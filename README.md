@@ -10,6 +10,7 @@ ros_control, effort_controllers, joint_state_controller, and robot_state_publish
 ## Current Issues
 Arm_Triangle, Back_Support, Component_48_1 and associated joints (The mechanism to keep the gripper holder stable) not being properly exported to the URDF, so they are excluded from the Simulation package. Need to correctly export them as URDF
 
+
 On controlling the joint Rev_14 (Responsible for controlling the rack and pinion mechanism), the simulation goes haywire
 
 -To replicate: Uncomment Rev_14 part in Simulation/test_description/launch/controller.yaml and add Rev_14 in args of the controller.launch file next to Rev_16. Save and launch
