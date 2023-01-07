@@ -5,6 +5,7 @@
 <xacro:include filename="$(find test_description)/urdf/test.trans" />
 <xacro:include filename="$(find test_description)/urdf/test.gazebo" />
 
+<link name="world"/>
 <link name="base_link">
   <inertial>
     <origin xyz="0.002627025718145887 0.0018168583679358929 0.01943654315821824" rpy="0 0 0"/>
@@ -22,27 +23,6 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
       <mesh filename="package://test_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-  </collision>
-</link>
-
-<link name="Back_support_1">
-  <inertial>
-    <origin xyz="0.011723829476401205 -0.0014444361142135903 0.12489497982444198" rpy="0 0 0"/>
-    <mass value="0.12966866737524385"/>
-    <inertia ixx="0.000746" iyy="0.000795" izz="4.9e-05" ixy="-0.0" iyz="-1e-06" ixz="-0.000173"/>
-  </inertial>
-  <visual>
-    <origin xyz="0.041809 -0.055227 -0.0879" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://test_description/meshes/Back_support_1.stl" scale="0.001 0.001 0.001"/>
-    </geometry>
-    <material name="opaque251250245"/>
-  </visual>
-  <collision>
-    <origin xyz="0.041809 -0.055227 -0.0879" rpy="0 0 0"/>
-    <geometry>
-      <mesh filename="package://test_description/meshes/Back_support_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -152,11 +132,10 @@
   </collision>
 </link>
 
-<joint name="Rev1" type="continuous">
-  <origin xyz="-0.041809 0.055227 0.0879" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="Back_support_1"/>
-  <axis xyz="-0.008026 0.999968 0.0"/>
+<joint name="world_to_base_link=" type="fixed">
+     <parent link="world"/>
+     <child link="base_link"/>
+     <origin xyz="0 0 0.02" rpy="0 0 0"/>
 </joint>
 
 <joint name="Rev4" type="continuous">
