@@ -1,4 +1,4 @@
-# Dexter_Arm
+# Dexter-2.0
 Files related to Arm of Dexter 2.0
 
 ## How to Run
