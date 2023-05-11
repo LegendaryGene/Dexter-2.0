@@ -1,0 +1,15 @@
+<launch>
+  <param command="$(find xacro)/xacro $(find robot_description)/urdf/robot.xacro" name="robot_description"/>
+  <node args="-param robot_description -urdf -model robot" name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"/>
+  <arg name="world" default="$(find robot_description)/worlds/era_maze_world.world"/>  
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world)"/> 
+    <arg name="paused" value="true"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+  <node pkg="tf" type="static_transform_publisher" name="baselink_to_lidar" args="-0.5 0 0 0 0 0 base_link lidar 10" />
+  <node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom 100" />
+</launch>
